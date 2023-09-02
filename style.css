@@ -3,16 +3,43 @@ display: flex;
 justify-content: center;
 }*/
 
-button {
-  width: 20px;
-  height: 20px;
-  margin: 2px;
-  /*padding, flexbox, grid...*/
+.Appwrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /*flex: 0 1 70%;*/
+  max-width: 500px;/*kích thước bao giới hạn toàn bộ, xài max-witdh giúp responsive khi thay đổi kích thước màn hình
+  , nếu chỉ dùng max thì sẽ không responsive*/
+}
+
+.Keyboard, .Display {
+display: flex;
+flex-wrap:wrap;
+flex: 0 1 100%;
 }
 
 .Display {
   height: 100px;
-  width: 500px;
- border-radius: 20px;
- background-color:black;
+  background-color: black;
+  border-radius: 8px;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5rem;/*? xài rem, em, px*/
+  color: white;
+  padding-right: 20px; /* hoặc dùng padding: ...*/
 }
+
+.Btn {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  flex-wrap: wrap;
+  /*padding, margin, flexbox, grid...*/
+
+  flex-basis: 100px;/* tăng kích thước của các nút */
+}
+
+.Keyequal {
+  flex-grow: 1;/*tăng kích thước nút =*/
+}
+
+
