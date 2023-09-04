@@ -3,12 +3,22 @@ display: flex;
 justify-content: center;
 }*/
 
+/*grid, flezbox*/
+body{
+background-image: url("https://wallpapers.com/images/hd/studio-ghibli-howl-s-garden-plal8rt6cs9zike9.webp");
+background-repeat: no-repeat;  /*loại bỏ duplicate background */
+background-size: cover;/*100%*/  /*giúp ảnh backgorund luôn giữ nguyên kích thước dù zoom in out*/
+}
+
+
 .Appwrapper {
   display: flex;
   flex-wrap: wrap;
   /*flex: 0 1 70%;*/
   max-width: 500px;/*kích thước bao giới hạn toàn bộ, xài max-witdh giúp responsive khi thay đổi kích thước màn hình
   , nếu chỉ dùng max thì sẽ không responsive*/
+   margin: auto;/*làm cho cả appwrapper canh giữa*/
+   
 }
 
 .Keyboard, .Display {
@@ -17,9 +27,10 @@ flex-wrap:wrap;
 flex: 0 1 100%;
 }
 
+
 .Display {
   height: 100px;
-  background-color: black;
+  background-color: rgb(52, 49, 49);
   border-radius: 8px;
   justify-content: flex-end;
   align-items: center;
@@ -28,18 +39,26 @@ flex: 0 1 100%;
   padding-right: 20px; /* hoặc dùng padding: ...*/
 }
 
-.Btn {
-  display: flex;
+.Btn, .Number{
+  /*display: flex;*/
   width: 20px;
   height: 20px;
   flex-wrap: wrap;
   /*padding, margin, flexbox, grid...*/
-
+  text-align: center;
   flex-basis: 100px;/* tăng kích thước của các nút */
+  cursor: pointer; /*hiện icon bàn tay khi hover nút*/
+  background-color: grey;
 }
 
 .Keyequal {
   flex-grow: 1;/*tăng kích thước nút =*/
+  background-color: rgb(18, 212, 44);
+  font-weight: bold;
 }
 
 
+.Clear{
+  font-weight: bold;
+  background-color:red;
+}
