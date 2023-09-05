@@ -37,6 +37,13 @@ hàm thực hiện tính tiếp sau khi đã tính toán 1,2,3...n lần
 
 /*tut link https://www.youtube.com/watch?v=j59qQ7YWLxw&t=1s*/
 
+const NumberButtons = document.querySelectorAll('.Number');
+const OperationButtons = document.querySelectorAll('.Operation');
+const EqualButton = document.querySelector('.Keyequal');
+const ClearButton = document.querySelector('.Clear');
+const PreviousOperandTextElement = document.querySelector('.Previous-Operand')
+const CurrentOperandTextElement = document.querySelector('.Current-Operand')
+
 class Calculator {//class chứa constructor chứa input và fuunction cho caclculator
     constructor (PreviousOperandTextElement,CurrentOperandTextElement){
         this.PreviousOperandTextElement = PreviousOperandTextElement;// PreviousOperand nghĩa là dãy số được nhập trước, nhập đầu tiên
@@ -48,7 +55,7 @@ class Calculator {//class chứa constructor chứa input và fuunction cho cacl
         /*gọi hàm xóa toàn bộ để làm sạch các giá trị trước 
         khi thực hiện phép tính */
     }
-}
+
 
 clear ()//hàm xóa toàn bộ
 {
@@ -69,7 +76,7 @@ appendNumber (number) // hàm thêm số liên tiếp vào chuỗi số để th
     các dòng code kể từ sau dòng code này, để tránh việc dấu chấm '.' được thêm vào nhiều lần nữa trong 1 chuỗi số mà đã có
     tồn tại dấu chấm trước đó, ví dụ: 123.11.22 */
 
-    this.CurrentOperandTextElement.innerText = this.CurrentOperand.toString()+ number.toString();
+    this.CurrentOperand= this.CurrentOperand.toString()+ number.toString();
     // hàm trên chuyển thành string (toString) vì ví dụ: nếu 2 số nhập vào là 1 và 1 thì Javascript sẽ tự chuyển thành 2 ( vì số 1+ 1 =2)
     // nên cần chuyển thành string để đạt được mục đích ghép chuối số liên tiếp "1" + "1" thành 11
 }
@@ -126,17 +133,17 @@ getDisplayNumber(number){// hàm để không hiển thị dấu "," trong chu�
     const integerDigits = parseFloat (stringNumber.split('.')[0]);
     const decimalDigits = stringNumber.split('.')[1];
   
-    let integerDislay;
+    let integerDisplay;
     if (isNaN(integerDigits)){
-        integerDislay ='';
+        integerDisplay ='';
     }else {
-        integerDislay = integerDigits.toLocaleString("en",{maximumFractionDigits: 0})
+        integerDisplay = integerDigits.toLocaleString("en",{maximumFractionDigits: 0})
     }
     if (decimalDigits!=  null) {
-        return `${integerDislay}.${decimalDigits}`;
+        return `${integerDisplay}.${decimalDigits}`;
     }
     else {
-        return intgerDisplay;
+        return integerDisplay;
     }
 }
 
@@ -144,23 +151,17 @@ getDisplayNumber(number){// hàm để không hiển thị dấu "," trong chu�
 updateDisplay ()//hàm hiển thị
 {
 this.CurrentOperandTextElement.innerText = this.getDisplayNumber(this.CurrentOperand);//hiển thị dãy số được append vừa nhập, bao gồm bỏ dấu "," nhờ có từ việc gọi hàm getDisplayNumber ()
-if (this.operation != null /* kiểm tra xem có chọn operation chưa, nếu có thì thực hiện statement bên dưới*/)
+if (this.operation != null) /* kiểm tra xem có chọn operation chưa, nếu có thì thực hiện statement bên dưới*/
     {
-    this.PreviousOperandTextElement.innerText = `${this.getDisplayNumber(PreviousOperand)} ${this.operation}`;//hiển thị dãy số  được append vừa nhập lên trên, để dành chỗ cho dãy số tiếp theo sẽ sắp được nhập ( sau khi đã chọn loại dấu operation), và gán chuỗi oepration vào số nhập trước đó, dùng template literal
+    this.PreviousOperandTextElement.innerText = `${this.getDisplayNumber(this.PreviousOperand)} ${this.operation}`;//hiển thị dãy số  được append vừa nhập lên trên, để dành chỗ cho dãy số tiếp theo sẽ sắp được nhập ( sau khi đã chọn loại dấu operation), và gán chuỗi oepration vào số nhập trước đó, dùng template literal
     }
     else {
         this.PreviousOperandTextElement.innerText= '';
     }
-
+}
 }
 
 
-const NumberButtons = document.querySelectorAll('.Number');
-const OperationButtons = document.querySelectorAll('.Operation');
-const EqualButton = document.querySelector('.Keyequal');
-const ClearButton = document.querySelector('.Clear');
-const PreviousOperandTextElement = document.querySelector('.Previous-Operand')
-const CurrentOperandTextElement = document.querySelector('.Current-Operand')
 
 // tạo class mới (dùng new_tênclass) từ class constructor ở lúc đầu, và gán cho object là calculator
 const calculator = new Calculator (PreviousOperandTextElement,CurrentOperandTextElement)
