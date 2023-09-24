@@ -1,5 +1,5 @@
 # Calculator_app
 Calculating simple mathematics. 
 + Needs Backspace function
-+ Needs more responsive
++ Needs to be more responsive
 + ...
